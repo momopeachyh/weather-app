@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/288683e5c1.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Weather App</title>
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      
+        <div class="row">
+          <div class="col-8">
+            <form>
+            <input
+              type="text"
+              placeholder="Enter a city"
+              autofocus="on"
+              autocomplete="off"
+              class="search-bar form-control shadow-sm"
+              id="search-bar"
+            />
+          </div>
+          <div class="col-2">
+            <input
+              type="submit"
+              value="Search"
+              class="btn form-control shadow-sm"
+              id="search-button"
+            />
+            </form>
+          </div>
+          
+          <div class="col-2">
+            <button
+              type="button"
+              class="btn form-control shadow-sm"
+              id="geolocation-button"
+            >
+              <i class="fas fa-location-arrow"></i>
+            </button>
+          </div>
+        </div>
+   
+
+      <div class="row heading">
+        <div class="col-6">
+          <h1>City</h1>
+          <h2 id="date-element">
+            <span id="day-of-week">Day of week</span>
+            <span id="current-time">current time</span>
+          </h2>
+        </div>
+
+        <i class="fas fa-cloud-rain col-3"></i>
+        <div class="current-temp col-3">
+          <h2>
+            <span id="todays-temp" class="todays-temp" id="todays-temp">10</span
+            >° <a href="x" id="celsius">C</a>|<a href="x" id="fahrenheit">F</a>
+          </h2>
+        </div>
+      </div>
+
+      <div class="non-temp-data">
+        <h2 id="weather-description">Rainy</h2>
+        <h2 id="humidity">Humidity: 87%</h2>
+        <h2 id="windspeed">Wind: 4km/h</h2>
+      </div>
+
+      <div class="row forecast">
+        <div class="col">
+          <div class="Friday">
+            <h3>Fri</h3>
+            <i class="fas fa-sun"></i>
+            <h3>41°</h3>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="Saturday">
+            <h3>Sat</h3>
+            <i class="fas fa-cloud-sun"></i>
+            <h3>55°</h3>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="Sunday">
+            <h3>Sun</h3>
+            <i class="fas fa-cloud"></i>
+            <h3>43°</h3>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="Monday">
+            <h3>Mon</h3>
+            <i class="fas fa-cloud-rain"></i>
+            <h3>47°</h3>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="Tuesday">
+            <h3>Tue</h3>
+            <i class="fas fa-cloud"></i>
+            <h3>46°</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="src/index.js"></script>
+  </body>
+</html>
