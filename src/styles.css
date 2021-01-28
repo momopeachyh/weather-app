@@ -1,7 +1,7 @@
 .container {
   display: block;
   margin: 35px auto;
-  padding: 20px 30px;
+  padding: 20px 30px 10px;
   max-width: 75%;
   border: 1px solid black;
   border-radius: 10px;
@@ -54,4 +54,10 @@ h2 {
   margin-top: 35px;
   max-width: 100%;
   font-size: 35px;
+}
+
+.code-link {
+  position: relative;
+  bottom: 30px;
+  left: 130px;
 }
