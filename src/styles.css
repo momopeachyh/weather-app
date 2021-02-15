@@ -21,6 +21,7 @@ h2 {
 
 .todays-temp {
   font-size: 50px;
+  font-weight: normal;
   position: relative;
   top: 15px;
 }
@@ -48,13 +49,16 @@ h2 {
   margin: 10px 10px 0px;
 }
 
+.temp-conversion {
+  font-size: 24px;
+}
+
 .non-temp-data {
   margin-left: 24px;
   margin-top: 10px;
 }
 
 .forecast {
-  margin-top: 35px;
-  max-width: 100%;
   font-size: 35px;
+  max-width: 100%;
 }

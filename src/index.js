@@ -52,7 +52,7 @@ function showWeather(response) {
 
   let temperature = Math.round(response.data.main.temp);
   let tempHeading = document.querySelector("#todays-temp");
-  tempHeading.innerHTML = temperature;
+  tempHeading.innerHTML = `${temperature}°`;
 
   let weatherDescription = response.data.weather[0].description;
   weatherDescription =
@@ -70,6 +70,12 @@ function showWeather(response) {
   let windSpeed = response.data.wind.speed;
   let windHeading = document.querySelector("#windspeed");
   windHeading.innerHTML = `Wind: ${windSpeed}km/h`;
+
+  let weatherIcon = document.querySelector("weather-icon");
+  weatherIcon.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
 }
 
 function getTemp(city) {
