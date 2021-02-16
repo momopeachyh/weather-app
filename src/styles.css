@@ -1,22 +1,23 @@
 .container {
   display: block;
-  margin: 35px auto;
+  margin: 15px auto;
   max-width: 75%;
 }
 
 .app-wrapper {
   border: 1px solid black;
-  padding: 20px 30px 10px;
+  padding: 10px 40px 10px 40px;
   border-radius: 10px;
 }
 
-h1,
-h2 {
-  margin: 0px;
+h1 {
+  font-size: 50px;
 }
 
-.heading i {
-  font-size: 100px;
+h2,
+span {
+  font-size: 25px;
+  line-height: 0.8;
 }
 
 .todays-temp {
@@ -50,15 +51,15 @@ h2 {
 }
 
 .temp-conversion {
-  font-size: 24px;
+  font-size: 25px;
 }
 
-.non-temp-data {
-  margin-left: 24px;
-  margin-top: 10px;
+.overview {
+  margin: 10px 0px 30px 24px;
 }
 
 .forecast {
   font-size: 35px;
   max-width: 100%;
+  text-align: center;
 }
