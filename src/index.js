@@ -25,23 +25,7 @@ weekday.innerHTML = `${currentDay}`;
 let time = document.querySelector("#current-time");
 time.innerHTML = `${currentHour}:${currentMinute}`;
 
-function convertToFahrenheit(event) {
-  event.preventDefault();
-  let tempFahrenheit = document.querySelector("#todays-temp");
-  tempFahrenheit.innerHTML = 50;
-}
-
-let fahrenheit = document.querySelector("#fahrenheit");
-fahrenheit.addEventListener("click", convertToFahrenheit);
-
-function convertToCelsius(event) {
-  event.preventDefault();
-  let tempCelsius = document.querySelector("#todays-temp");
-  tempCelsius.innerHTML = 10;
-}
-
-let celsius = document.querySelector("#celsius");
-celsius.addEventListener("click", convertToCelsius);
+let celsiusTemp = null;
 
 function showWeather(response) {
   let cityDisplayed = document.querySelector("h1");
@@ -53,6 +37,7 @@ function showWeather(response) {
   let temperature = Math.round(response.data.main.temp);
   let tempHeading = document.querySelector("#todays-temp");
   tempHeading.innerHTML = `${temperature}°`;
+  celsiusTemp = response.data.main.temp;
 
   let weatherDescription = response.data.weather[0].description;
   weatherDescription =
@@ -110,3 +95,26 @@ function getPosition(event) {
 
 let geolocationButton = document.querySelector("#geolocation-button");
 geolocationButton.addEventListener("click", getPosition);
+
+function convertToFahrenheit(event) {
+  event.preventDefault();
+  let tempFahrenheit = (celsiusTemp * 9) / 5 + 32;
+  let tempElement = document.querySelector("#todays-temp");
+  tempElement.innerHTML = `${Math.round(tempFahrenheit)}°`;
+  fahrenheit.classList.add("active");
+  celsius.classList.remove("active");
+}
+
+let fahrenheit = document.querySelector("#fahrenheit-converter");
+fahrenheit.addEventListener("click", convertToFahrenheit);
+
+function convertToCelsius(event) {
+  event.preventDefault();
+  let tempElement = document.querySelector("#todays-temp");
+  tempElement.innerHTML = `${Math.round(celsiusTemp)}°`;
+  celsius.classList.add("active");
+  fahrenheit.classList.remove("active");
+}
+
+let celsius = document.querySelector("#celsius-converter");
+celsius.addEventListener("click", convertToCelsius);

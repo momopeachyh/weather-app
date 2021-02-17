@@ -1,3 +1,7 @@
+body {
+  background-image: url("IMG_1828.jpg");
+}
+
 .container {
   display: block;
   margin: 15px auto;
@@ -25,6 +29,16 @@ span {
   font-weight: normal;
   position: relative;
   top: 15px;
+}
+
+.active {
+  color: black;
+  text-decoration: none;
+  cursor: default;
+}
+
+.active:hover {
+  color: black;
 }
 
 .row {
