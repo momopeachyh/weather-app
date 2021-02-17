@@ -71,7 +71,7 @@ function showWeather(response) {
   let windHeading = document.querySelector("#windspeed");
   windHeading.innerHTML = `Wind: ${windSpeed}km/h`;
 
-  let weatherIcon = document.querySelector("weather-icon");
+  let weatherIcon = document.querySelector("#weather-icon");
   weatherIcon.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
