@@ -1,4 +1,4 @@
-let currentDate = new Date();
+let date = new Date();
 let days = [
   "Sunday",
   "Monday",
@@ -8,13 +8,13 @@ let days = [
   "Friday",
   "Saturday",
 ];
-let currentDay = days[currentDate.getDay()];
-let currentHour = currentDate.getHours();
+let currentDay = days[date.getDay()];
+let currentHour = date.getHours();
 if (currentHour < 10) {
   currentHour = `0${currentHour}`;
 }
 
-let currentMinute = currentDate.getMinutes();
+let currentMinute = date.getMinutes();
 if (currentMinute < 10) {
   currentMinute = `0${currentMinute}`;
 }
@@ -63,11 +63,53 @@ function showWeather(response) {
   );
 }
 
+function formatUnix(timestamp) {
+  date = new Date(timestamp);
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  return `${hours}:${minutes}`;
+}
+
+function showForecast(response) {
+  let forecast = document.querySelector("#forecast");
+  forecast.innerHTML = null;
+  let forecastData = null;
+
+  for (let index = 0; index < 5; index++) {
+    forecastData = response.data.list[index];
+    forecast.innerHTML += ` 
+             <div class="col">
+            <h3>${formatUnix(forecastData.dt * 1000)}</h3>
+             <img src="http://openweathermap.org/img/wn/${
+               forecastData.weather[0].icon
+             }@2x.png" id="weather-icon" class="forecast">
+            <h3 id="forecast-temp">${Math.round(
+              forecastData.main.temp_max
+            )}°</h3>
+        </div>`;
+  }
+  let forecastTempCelsius = forecastData.main.temp_max;
+}
+
+forecastTempCelsius = null;
+
 function getTemp(city) {
   let apiKey = "343320b5e251ee7c39260263367d8fb5";
   let units = "metric";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(showWeather);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(showForecast);
 }
 
 function showCity(event) {
@@ -101,6 +143,12 @@ function convertToFahrenheit(event) {
   let tempFahrenheit = (celsiusTemp * 9) / 5 + 32;
   let tempElement = document.querySelector("#todays-temp");
   tempElement.innerHTML = `${Math.round(tempFahrenheit)}°`;
+
+  let forecastTempFahrenheit = (forecastTempCelsius * 9) / 5 + 32;
+  console.log(forecastTempCelsius);
+  let forecastTemp = document.querySelector("#forecast-temp");
+  forecastTemp.innerHTML = `${Math.round(forecastTempFahrenheit)}°`;
+
   fahrenheit.classList.add("active");
   celsius.classList.remove("active");
 }
@@ -112,9 +160,15 @@ function convertToCelsius(event) {
   event.preventDefault();
   let tempElement = document.querySelector("#todays-temp");
   tempElement.innerHTML = `${Math.round(celsiusTemp)}°`;
+
+  let forecastTemp = document.querySelector("#forecast-temp");
+  forecastTemp.innerHTML = `${Math.round(forecastTempCelsius)}°`;
+
   celsius.classList.add("active");
   fahrenheit.classList.remove("active");
 }
 
 let celsius = document.querySelector("#celsius-converter");
 celsius.addEventListener("click", convertToCelsius);
+
+getTemp("new york");
