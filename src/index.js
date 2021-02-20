@@ -61,6 +61,9 @@ function showWeather(response) {
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
+
+  celsius.classList.add("active");
+  fahrenheit.classList.remove("active");
 }
 
 function formatUnix(timestamp) {
@@ -79,7 +82,10 @@ function formatUnix(timestamp) {
   return `${hours}:${minutes}`;
 }
 
+let forecastTempCelsius = null;
+
 function showForecast(response) {
+  console.log(response.data.list);
   let forecast = document.querySelector("#forecast");
   forecast.innerHTML = null;
   let forecastData = null;
@@ -97,10 +103,8 @@ function showForecast(response) {
             )}°</h3>
         </div>`;
   }
-  let forecastTempCelsius = forecastData.main.temp_max;
+  forecastTempCelsius = forecastData.main.temp_max;
 }
-
-forecastTempCelsius = null;
 
 function getTemp(city) {
   let apiKey = "343320b5e251ee7c39260263367d8fb5";
@@ -144,10 +148,9 @@ function convertToFahrenheit(event) {
   let tempElement = document.querySelector("#todays-temp");
   tempElement.innerHTML = `${Math.round(tempFahrenheit)}°`;
 
-  let forecastTempFahrenheit = (forecastTempCelsius * 9) / 5 + 32;
-  console.log(forecastTempCelsius);
-  let forecastTemp = document.querySelector("#forecast-temp");
-  forecastTemp.innerHTML = `${Math.round(forecastTempFahrenheit)}°`;
+  // let forecastTempFahrenheit = (forecastTempCelsius * 9) / 5 + 32;
+  // let forecastTemp = document.querySelector("#forecast-temp");
+  // forecastTemp.innerHTML = `${Math.round(forecastTempFahrenheit)}°`;
 
   fahrenheit.classList.add("active");
   celsius.classList.remove("active");
@@ -161,8 +164,8 @@ function convertToCelsius(event) {
   let tempElement = document.querySelector("#todays-temp");
   tempElement.innerHTML = `${Math.round(celsiusTemp)}°`;
 
-  let forecastTemp = document.querySelector("#forecast-temp");
-  forecastTemp.innerHTML = `${Math.round(forecastTempCelsius)}°`;
+  // let forecastTemp = document.querySelector("#forecast-temp");
+  // forecastTemp.innerHTML = `${Math.round(forecastTempCelsius)}°`;
 
   celsius.classList.add("active");
   fahrenheit.classList.remove("active");
