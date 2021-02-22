@@ -54,7 +54,7 @@ function showWeather(response) {
 
   let windSpeed = response.data.wind.speed;
   let windHeading = document.querySelector("#windspeed");
-  windHeading.innerHTML = `Wind: ${windSpeed}km/h`;
+  windHeading.innerHTML = `Wind: ${windSpeed} km/h`;
 
   let weatherIcon = document.querySelector("#weather-icon");
   weatherIcon.setAttribute(
@@ -85,7 +85,6 @@ function formatUnix(timestamp) {
 let forecastTempCelsius = null;
 
 function showForecast(response) {
-  console.log(response.data.list);
   let forecast = document.querySelector("#forecast");
   forecast.innerHTML = null;
   let forecastData = null;
@@ -132,6 +131,9 @@ function showPosition(position) {
   let longitude = position.coords.longitude;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(showWeather);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(showForecast);
 }
 
 function getPosition(event) {
