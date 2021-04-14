@@ -103,6 +103,8 @@ function showForecast(response) {
         </div>`;
   }
   forecastTempCelsius = forecastData.main.temp_max;
+  console.log(response.data);
+  console.log(Math.round(forecastData.main.temp_max));
 }
 
 function getTemp(city) {
