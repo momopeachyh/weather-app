@@ -1,4 +1,10 @@
+:root {
+  --primary-color: rgb(253, 101, 133);
+  --lighter-primary: rgb(255, 211, 165);
+}
+
 .container {
+  color: white;
   display: block;
   font-family: "Catamaran", sans-serif;
   margin: 15px auto;
@@ -8,7 +14,11 @@
 .app-wrapper {
   padding: 40px 40px;
   border-radius: 10px;
-  background-image: linear-gradient(140deg, #fdfcfb 0%, #00bcd4 100%);
+  background: radial-gradient(
+    circle at 10% 20%,
+    rgb(253, 101, 133) 0%,
+    rgb(255, 211, 165) 90%
+  );
 }
 
 h1 {
@@ -23,11 +33,11 @@ span {
 }
 
 a {
-  color: #00bcd4;
+  color: var(--lighter-primary);
 }
 
 a:hover {
-  color: #ffeb3b;
+  color: white;
 }
 
 .todays-temp {
@@ -38,33 +48,33 @@ a:hover {
 }
 
 .active {
-  color: black;
+  color: white;
   text-decoration: none;
   cursor: default;
 }
 
 .active:hover {
-  color: black;
+  color: white;
 }
 
 .btn {
   color: white;
-  background-color: #00bcd4;
+  background-color: var(--primary-color);
   border: #00bcd4;
   transition: all 150 ease-in-out;
 }
 
 .btn:hover {
   color: white;
-  background-color: #ffeb3b;
+  background-color: var(--lighter-primary);
 }
 
 .search-bar {
-  border-color: #00bcd4;
+  border-color: var(--primary-color);
 }
 
 .search-bar:focus {
-  border-color: #00bcd4;
+  border-color: var(--primary-color);
 }
 
 .current-temp {
@@ -91,4 +101,16 @@ a:hover {
   max-width: 100%;
   padding: 15px 0px;
   text-align: center;
+}
+
+small {
+  color: rgb(72, 72, 74);
+}
+
+small a {
+  color: var(--primary-color);
+}
+
+small a:hover {
+  color: var(--lighter-primary);
 }
